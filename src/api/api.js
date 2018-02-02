@@ -1,5 +1,5 @@
 //配置npm
-var root = 'https://cnodejs.org/api/v1'
+var root = '/api'
 
 var axios = require('axios')
 
@@ -32,13 +32,13 @@ function apiAxios(method, url, params, success, failure) {
   }
   axios({
     method:method,
-    url:url,
+    url:root+url,
+    header:'Access-Control-Allow-Origin',
     data: method === 'POST' || method === 'PUT' ? params:null,
     params:method === 'GET' || method === 'DELETE' ? params:null,
-    baseUrl:root,
     withCredentials:false
   }).then(function (res) {
-    if(res.data.success === true){
+    if(res.data.errorCode === 0){
       if(success){
         success(res.data)
       }

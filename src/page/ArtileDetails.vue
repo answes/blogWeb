@@ -28,9 +28,9 @@
       return {}
     },
     created(){
-      // this.$api.get('topics',null,r=>{
-      //   console.log(r)
-      // })
+      this.$api.get('/article/',null,r=>{
+        console.log(r)
+      })
     }
   }
 </script>

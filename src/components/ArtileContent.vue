@@ -13,6 +13,7 @@
       <p>如果文章之中有什么错误之处，欢迎大家指出，如果有什么不懂之处欢迎骚扰<span style="color: aquamarine;font-size: 16px"> QQ:202087461</span></p>
     </div>
     <div class="comment">
+      <input type="text" width="80%" height="60px" align="center"/>
       <p>这里是评论</p>
     </div>
   </el-card >
