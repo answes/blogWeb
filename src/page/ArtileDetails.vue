@@ -4,7 +4,7 @@
       <user-info></user-info>
     </el-aside>
     <el-main class="el-main">
-      <artile-content></artile-content>
+      <artile-content :detail="detail"></artile-content>
     </el-main>
     <el-aside width="280px">
       <advertis></advertis>
@@ -25,11 +25,14 @@
     },
     name: "artile-details",
     data: function () {
-      return {}
+      return {
+        detail:{}
+      }
     },
     created(){
-      this.$api.get('/article/',null,r=>{
-        console.log(r)
+      let param={id:1}
+      this.$api.get('/article/getById',param,r=>{
+       this.detail=r.data
       })
     }
   }

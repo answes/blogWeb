@@ -1,13 +1,13 @@
 <template>
   <el-card class="">
     <div class="content">
-      <h3>关于Vue.js的使用</h3>
+      <h3 v-html="title">关于Vue.js的使用</h3>
       <div class="time">
-        <span>时间：2018-11-21 11：15：59</span><span class="magin-left18">作者：BigShark</span>
+        <span>时间：{{time}}</span><span class="magin-left18">作者：{{author}}</span>
       </div>
     </div>
     <div class="content-msg">
-      这里是内容
+      {{content}}
     </div>
     <div class="info">
       <p>如果文章之中有什么错误之处，欢迎大家指出，如果有什么不懂之处欢迎骚扰<span style="color: aquamarine;font-size: 16px"> QQ:202087461</span></p>
@@ -20,11 +20,28 @@
 </template>
 
 <script>
-  import ElCard from "element-ui/packages/card/src/main";
 
   export default {
-    components: {ElCard},
-    name: "artile-content"
+    name: "artile-content",
+    props:['detail'],
+    data:function () {
+      return{
+        title:'',
+        time:'',
+        author:'',
+        content:'',
+        comments:[]
+      }
+    },
+    created(){
+      var d = this.detail
+      this.title = d.title
+      this.time = this.$utils.formatTime(d.createTime)
+      this.author = d.author
+      this.content = d.content
+      //this.comments = d.comment
+    },
+
   }
 </script>
 

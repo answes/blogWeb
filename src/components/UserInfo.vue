@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div align="center">
-      <img class="user_img" src="../assets/home.png" alt="logo"/>
+      <img class="user_img" src="../assets/header.jpg" alt="logo"/>
     </div>
     <div class="user_name">
       Bigshark
@@ -17,14 +17,12 @@
     </div>
     <hr color="cadetblue">
     <div class="directory">
-      <router-link class="router" to="/"><h5>Java从入门到放弃</h5></router-link>
-      <router-link class="router" to="/"><h5>Android从菜鸟到鸟蛋</h5></router-link>
-      <router-link class="router" to="/"><h5>ios从蒙圈到递归懵逼</h5></router-link>
-      <router-link class="router" to="/"><h5>从删库到跑路篇</h5></router-link>
+      <router-link class="router" to="/"  v-for="item in directory" :key="item"><h5>{{item.title}}</h5></router-link>
     </div>
     <div class="call-mine">
       <ul>
-        <li><router-link class="router" to="/"><img  src="../assets/QQ.png" alt="QQ" title="QQ"/></router-link></li>
+        <li><a class="router" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=202087461&site=qq&menu=yes">
+          <img  src="../assets/QQ.png" alt="QQ" title="QQ"/></a></li>
         <li><router-link class="router" to="/"><img src="../assets/github.png" alt="github" title="github"/></router-link></li>
         <li><router-link class="router" to="/"><img src="../assets/weixin.png" alt="微信" title="微信"/></router-link></li>
         <li><router-link class="router" to="/"><img src="../assets/sina.png" alt="新浪微博" title="新浪微博"/></router-link></li>
@@ -41,6 +39,23 @@
 <script>
   export default {
     name: "user-info",
+    data:function () {
+      return{
+        directory:[]
+      }
+    },
+    created(){
+      this.getDirectory()
+    },
+    methods:{
+      getDirectory(){
+        this.$api.get('/class/selectList',null,r=>{
+          console.log(r.data)
+            this.directory = r.data
+
+        })
+      }
+    },
   }
 </script>
 
